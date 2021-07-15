@@ -58,6 +58,10 @@ let has_seen_reactor1 = false;
 let has_seen_reactor2 = false;
 let has_power_source = false;
 let took_floor1_ammo = false;
+let has_cord = false;
+let has_power = false;
+let cockpit_ready = false;
+let reactor_on = false;
 
 // Storage Slots 
 
@@ -142,6 +146,9 @@ $("#messages-notes").hide();
 $("#floor1-ammo").hide();
 $("#floor2-cord").hide();
 $("#gun").hide();
+$("#floor3-power").hide();
+$("#floor4-reactor").hide();
+$("#end").hide();
 
 // Start Menu 
 
@@ -197,6 +204,39 @@ $("#checkpoint").click(function () {
 
           track2.play();
           hum.play();
+        }
+
+        else if (my_checkpoint === "floor2") {
+          $("#floor2").fadeIn(3000);
+
+          floor = 2;
+
+          track3.play();
+          hum.play();
+        }
+
+        else if (my_checkpoint === "floor3") {
+          $("#floor3").fadeIn(3000);
+
+          floor = 3;
+
+          track4.play();
+        }
+
+        else if (my_checkpoint === "floor4") {
+          $("#floor4").fadeIn(3000);
+
+          floor = 4;
+
+          track5.play();
+        }
+
+        else if (my_checkpoint === "floor5") {
+          $("#floor5").fadeIn(3000);
+
+          floor = 5;
+
+          track6.play();
         }
 
         body.classList.add("noCursor");
@@ -357,6 +397,8 @@ let isOnGunBack = false;
 let isOnMonitor = false;
 let isOnAmmo = false;
 let isOnCord = false;
+let isOnPower = false;
+let isOnReactor = false;
 
 function collision ($div1, $div2) {
   let x1 = $div1.offset().left;
@@ -463,6 +505,22 @@ setInterval(function () {
 
   else {
     isOnElevator5 = false;
+  }
+
+  if (collision($("#crosshair"), $("#floor3-power"))) {
+    isOnPower = true;
+  }
+
+  else {
+    isOnPower = false;
+  }
+
+  if (collision($("#crosshair"), $("#floor4-reactor"))) {
+    isOnReactor = true;
+  }
+
+  else {
+    isOnReactor = false;
   }
 }, 100);
 
@@ -617,6 +675,30 @@ $(document).mousemove(function (event) {
       boxShadow : "none"
     });
   }
+
+  if (isOnPower === true) {
+    $("#floor3-power").css({
+      boxShadow : "5px 10px 18px red"
+    });
+  }
+
+  else {
+    $("#floor3-power").css({
+      boxShadow : "none"
+    });
+  }
+
+  if (isOnReactor === true) {
+    $("#floor4-reactor").css({
+      boxShadow : "5px 10px 18px red"
+    });
+  }
+
+  else {
+    $("#floor4-reactor").css({
+      boxShadow : "none"
+    });
+  }
 });
 
 function muzzleFlash (type) {
@@ -708,6 +790,7 @@ function checkIfSelect () {
         hum.play();
 
         $("#hum").animate({volume : 1.0}, 3000);
+        localStorage.setItem("the5thfloor-checkpoint", "floor2");
 
         game_mode = 2;
         floor = 2;
@@ -788,7 +871,15 @@ function checkIfSelect () {
   }
 
   else if (isOnMonitor === true) {
-    if (has_power_source === true) {
+    if (has_power === true) {
+      messages_notes_inner.innerText = "SHIP IS READY FOR TAKEOFF- COCKPIT READY";
+      $("#messages-notes").fadeIn(3000);
+
+      cockpit_ready = true;
+
+      setTimeout(function () {
+        $("#messages-notes").fadeOut(3000);
+      }, 3000);
     }
 
     else {
@@ -839,6 +930,7 @@ function checkIfSelect () {
       $("#floor3").fadeIn(3000);
 
       messages_notes_inner.innerText = "It's too dark to go unprotected.";
+      localStorage.setItem("the5thfloor-checkpoint", "floor3");
 
       setTimeout(function () {
         $("#messages-notes").fadeIn(3000);
@@ -880,6 +972,7 @@ function checkIfSelect () {
 
       $("#track5").animate({volume : 1.0}, 3000);
       $("#floor4").fadeIn(3000);
+      localStorage.setItem("the5thfloor-checkpoint", "floor4");
     }, 3000);
   }
 
@@ -905,6 +998,7 @@ function checkIfSelect () {
 
       $("#track6").animate({volume : 1.0}, 3000);
       $("#floor5").fadeIn(3000);
+      localStorage.setItem("the5thfloor-checkpoint", "floor5");
     }, 3000);
   }
 
@@ -932,7 +1026,46 @@ function checkIfSelect () {
       $("#track2").animate({volume : 1.0}, 3000);
 
       $("#floor1").fadeIn(3000);
+      localStorage.setItem("the5thfloor-checkpoint", "floor1");
     }, 3000);
+  }
+
+  else if (isOnCord === true) {
+    has_cord = true;
+
+    $("#floor2-cord").hide();
+    taking.cloneNode(true).play();
+  }
+
+  else if (isOnPower === true) {
+    has_power = true;
+
+    $("#floor3-power").hide();
+    taking.cloneNode(true).play();
+  }
+
+  else if (isOnReactor === true) {
+    if (has_cord === true) {
+      messages_notes_inner.innerText = "The reactor is now part of the ship again.";
+
+      reactor_on = true;      
+
+      $("#messages-notes").fadeIn(3000);
+
+      setTimeout(function () {
+        $("#messages-notes").fadeOut(3000);
+      }, 3000);
+    }
+
+    else {
+      messages_notes_inner.innerText = "The reactor needs a cable to connect to the ship.";
+
+      $("#messages-notes").fadeIn(3000);
+
+      setTimeout(function () {
+        $("#messages-notes").fadeOut(3000);
+      }, 3000);
+    }
   }
 
   else {
@@ -1204,7 +1337,10 @@ technology.
       }
 
       else if (room === 0) {
-        $("#floor2-cord").show();
+        if (has_cord === false) {
+          $("#floor2-cord").show();
+        }
+
         $("#floor2-elevator-div").hide();
         
         console.log("test");
@@ -1243,7 +1379,10 @@ technology.
       room = room + 1;
 
       if (room === 0) {
-        $("#floor2-cord").show();
+        if (has_cord === false) {
+          $("#floor2-cord").show();
+        }
+
         $("#floor2-elevator-div").hide();
         
         console.log("test");
@@ -1289,6 +1428,10 @@ technology.
       room = room - 1;
 
       if (room === -1) {
+        if (has_power === false) {
+          $("#floor3-power").show();
+        }
+
         floor3.style.backgroundImage = "none";
         floor3.style.backgroundColor = "black";
       }
@@ -1322,6 +1465,7 @@ technology.
       room = room + 1;
 
       if (room === 0) {
+        $("#floor3-power").hide();
         $("#floor3-elevator-div").hide();
 
         floor3.style.backgroundImage = "none";
@@ -1376,6 +1520,7 @@ technology.
       }
 
       else if (room === 1) {
+        $("#floor4-reactor").hide();
         $("#floor4-elevator-div").show();
         
         console.log("test");
@@ -1422,6 +1567,7 @@ technology.
       }
 
       else if (room === 2) {
+        $("#floor4-reactor").show();
         $("#floor4-elevator-div").hide();
 
         floor4.style.backgroundImage = "url('../25FLOORS/images/storage1.png')";
@@ -1429,6 +1575,8 @@ technology.
       }
 
       else if (room === 3) {
+        $("#floor4-reactor").hide();
+
         floor4.style.backgroundImage = "url('../25FLOORS/images/storage2.png')";
         floor4.style.backgroundImage = "url('../25FLOORS/images/storage2.png')";
       }
@@ -1515,6 +1663,37 @@ technology.
       }
 
       else if (room === 3) {
+        if (reactor_on === false) {
+          // PASS
+        }
+
+        else {
+          if (cockpit_ready === false) {
+            // PASS
+          }
+
+          else {
+            game_mode = 1;
+
+          messages_notes_inner.innerText = "The ship starts to take off...";
+
+          setTimeout(function () {
+            $("#messages-notes").fadeIn(3000);
+
+            setTimeout(function () {
+              $("#messages-notes").fadeOut(3000);
+              $("#window").fadeOut(3000);
+              
+              $("#track6").animate({volume : 0.0}, 3000);
+
+              setTimeout(function () {
+                $("#end").fadeIn(3000);
+              }, 3000);
+            }, 5000);
+          }, 3000);
+          }
+        } 
+
         floor5.style.backgroundImage = "url('../25FLOORS/images/future4.png')";
         floor5.style.backgroundImage = "url('../25FLOORS/images/future4.png')";
       }

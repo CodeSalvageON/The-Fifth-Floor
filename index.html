@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width"
+    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>25 FLoors</title>
+    
+    <link href="https://codesalvageon.github.io/magichat/styles/index.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles/index.css" rel="stylesheet" type="text/css" />
+
+    <!-- Fonts -->
+  </head>
+  <body>
+    <br/>
+    <br/>
+    <div id="window" class="center">
+      <div id="window-bg">
+        <img src="/25FLOORS/images/bg1.png" width="700" height="600" id="window-bg-img" class="rounded"/> 
+      </div>
+      <div id="start-menu" class="center-absolute"> 
+        <h1 class="glow-red"><tt>The Fifth Floor</tt></h1>
+        <br/>
+        <br/>
+        <br/>
+        <h2 id="start-game" class="glow-red zoom"><tt>▶ PLAY</tt></h2>
+        <h2 id="checkpoint" class="glow-red zoom"><tt>▶ LOAD CHECKPOINT</tt></h2>
+        <h2 id="credits" class="glow-red zoom"><tt>▶ CREDITS</tt></h2>
+      </div>
+      <div id="story-scene" class="center-absolute">
+        <h2><tt id="story-text" class="glow-red">We were once a plentiful people.</tt></h2>
+        <h2 id="story-text-next" class="glow-red zoom"><tt>▶ NEXT</tt></h2> 
+      </div> 
+      <div id="story-scene2" class="center-absolute">
+        <h2><tt id="story2-text" class="glow-red">We got the distress call in the morning.</tt></h2>
+        <img src="/25FLOORS/images/ship.gif" width="300" height="300"/>
+      </div>
+      <div id="floor-text" class="center-absolute"> 
+        <h2 class="glow-red"><tt id="floor-text-inner">Floor 1</tt></h2>
+        <h2 class="glow-red"><tt id="objective-text">Objective: Search the first floor for supplies</tt></h2>
+        <h2 class="glow-red"><tt>Use your A and D keys to move around.</tt></h2>
+        <h2 class="glow-red"><tt>Press X to select or shoot things.</tt></h2>
+        <h2 class="glow-red"><tt>Objects that glow red are to be selected.</tt></h2>
+      </div>
+      <div id="elevator-lift" class="center-absolute rounded magic-ball"> 
+      </div>
+      <div id="floor1" class="center-absolute rounded"> 
+        <div id="floor1-elevator-div"> 
+        </div>
+        <img src="/25FLOORS/images/monitor.png" width="100" height="100" id="floor1-monitor"/>
+        <img src="/25FLOORS/images/ammo.png" width="125" height="80" id="floor1-ammo"/>
+      </div>
+      <div id="floor2" class="center-absolute rounded"> 
+        <div id="floor2-elevator-div"> 
+        </div>
+        <img src="/25FLOORS/images/cord.png" width="300" height="150" id="floor2-cord"/>
+      </div>
+      <div id="floor3"> 
+        <div id="floor3-elevator-div"> 
+        </div>
+      </div>
+      <div id="floor4"> 
+        <div id="floor4-elevator-div"> 
+        </div>
+      </div>
+      <div id="floor5"> 
+        <div id="floor5-elevator-div"> 
+        </div>
+      </div>
+      <div id="status">
+        <h3 class="glow-red"><tt id="hp-status">Health: 100%</tt></h3> 
+        <h3 class="glow-red"><tt id="ammo-status">Ammo: 30</tt></h3>
+        <h3 class="glow-red"><tt id="gun-status">Modified Ruger 10/22</tt></h3>
+      </div>
+      <div id="icons">
+        <img src="/25FLOORS/images/notepad.png" id="notepad" class="rounded" width="50" height="50"/> 
+        <br/>
+        <br/>
+        <img src="/25FLOORS/images/gun.png" id="gun" class="rounded" width="50" height="50"/> 
+      </div>
+      <div id="messages-notes" class="center-absolute"><h2 class="glow-red"><tt id="messages-notes-inner">I've never seen this kind of reactor before....</tt></h2></div>
+    </div>
+    <div id="notepad-div" class="rounded add-scroll center">
+      <h2 id="back-from-notepad" class="glow-red zoom"><tt>▶ BACK</tt></h2>
+      <pre id="notepad-div-text" align="left">
+Objectives: Search the first floor for supplies
+
+How the hell does a scrapper ship have 5 floors? And how does it still have power? 
+It must have some sort of advanced reactor or power source. 
+I will try and see if I can find it and bring it back.
+      </pre> 
+    </div>
+    <div id="gun-div" class="rounded add-scroll center"> 
+    </div>
+
+    <img src="/25FLOORS/images/muzzleflash.png" id="muzzleflash" width="120" height="50"/>
+    <img src="/25FLOORS/images/crosshair.png" id="crosshair" width="50" height="50"/>
+
+    <audio src="/25FLOORS/sounds/descent.mp3" id="descent"></audio>
+    <audio src="/25FLOORS/sounds/gunshot.mp3" id="gunshot"></audio>
+    <audio src="/25FLOORS/sounds/hum.mp3" id="hum" loop></audio>
+    <audio src="/25FLOORS/sounds/gong.mp3" id="gong"></audio>
+    <audio src="/25FLOORS/sounds/taking.mp3" id="taking"></audio>
+
+    <audio src="/25FLOORS/sounds/sam1.m4a" id="sam1"></audio>
+    <audio src="/25FLOORS/sounds/sam2.m4a" id="sam2"></audio>
+    <audio src="/25FLOORS/sounds/sam3.m4a" id="sam3"></audio>
+    <audio src="/25FLOORS/sounds/sam4.m4a" id="sam4"></audio>
+    <audio src="/25FLOORS/sounds/sam5.m4a" id="sam5"></audio>
+    <audio src="/25FLOORS/sounds/sam6.m4a" id="sam6"></audio>
+    <audio src="/25FLOORS/sounds/sam7.m4a" id="sam7"></audio>
+
+    <audio src="/25FLOORS/sounds/tracks/track1.mp3" id="track1"></audio>
+    <audio src="/25FLOORS/sounds/tracks/track2.mp3" id="track2" loop></audio>
+    <audio src="/25FLOORS/sounds/tracks/track3.mp3" id="track3" loop></audio>
+    <audio src="/25FLOORS/sounds/tracks/track4.mp3" id="track4" loop></audio>
+    <audio src="/25FLOORS/sounds/tracks/track5.mp3" id="track5" loop></audio>
+    <audio src="/25FLOORS/sounds/tracks/track6.mp3" id="track6" loop></audio>
+    
+    <script src="https://codesalvageon.github.io/magichat/scripts/jquery.js"></script>
+    <script src="/25FLOORS/25floors.js"></script>
+  </body>
+</html>

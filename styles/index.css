@@ -1,0 +1,154 @@
+body {
+  color: red;
+  background-color: black;
+  cursor: url("../25FLOORS/images/crosshair.png"), auto;	
+}
+
+#window {
+  width: 700px;
+  height: 600px;
+  position: relative;
+}
+
+#bg {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+}
+
+#start-menu, #story-scene, #story-scene2 {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+}
+
+#start-game, #story-text-next, #credits, #back-from-notepad {
+  width: 100px;
+  border-radius: 8px;
+  background-color: gray;
+}
+
+#checkpoint {
+  width: 250px;
+  border-radius: 8px;
+  background-color: gray;
+}
+
+#credits {
+  width: 120px;
+}
+
+#start-game:hover, #story-text-next:hover, #credits:hover, #checkpoint:hover {
+  cursor: pointer;
+  background-color: plum;
+}
+
+#elevator-lift, #floor1, #floor2, #floor4, #floor5 {
+  width: 700px;
+  height: 600px;
+  background-size: cover;
+  background-image: url("../25FLOORS/images/elevator.png");
+}
+
+#hp-status {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+}
+
+#ammo-status {
+  top: 16px;
+  left: 0px;
+  position: absolute;
+}
+
+#gun-status {
+  top: 32px;
+  left: 0px;
+  position: absolute;
+}
+
+#floor1 {
+  width: 700px;
+  height: 600px;
+  position: relative;
+}
+
+#floor2 {
+  width: 700px;
+  height: 600px;
+  position: relative;
+}
+
+#floor1:hover {
+  cursor: none;
+}
+
+#floor1-elevator-div, #floor2-elevator-div, #floor3-elevator-div, #floor4-elevator-div, #floor5-elevator-div {
+  top: 100px;
+  left: 195px;
+  width: 200px;
+  height: 380px;
+  position: absolute;
+}
+
+#floor1-monitor {
+  top: 500px;
+  left: 200px;
+  position: absolute;
+}
+
+#floor1-ammo {
+  top: 500px;
+  left: 20px;
+  position: absolute;
+}
+
+#floor1-elevator-div:hover {
+  cursor: pointer;
+  box-shadow: 5px 10px 18px red;
+}
+
+#muzzleflash {
+  z-index: 100;
+  position: absolute;
+}
+
+#crosshair {
+  z-index: 102;
+  position: absolute;
+}
+
+#notepad {
+  top: 0px;
+  right: 0px;
+  position: absolute;
+  background-color: bisque;
+}
+
+#gun {
+  top: 100px;
+  right: 0px;
+  position: absolute;
+  background-color: bisque;
+}
+
+#notepad-div {
+  width: 700px;
+  height: 600px;
+  position: relative;
+  background-color: bisque;
+}
+
+#messages-notes {
+  left: 0px;
+  top: 550px;
+  position: absolute;
+  background-color: black;
+}
+
+#floor2-cord {
+  top: 400px;
+  left: 230px;
+  position: absolute;
+}
